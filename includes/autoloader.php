@@ -1,5 +1,5 @@
 <?php 
-    spl_autoload_register();
+    spl_autoload_register("myAutoloader");
 
     function myAutoloader($newClass) {
         $filePath = __DIR__ . "/../classes/" . $newClass . ".php";
@@ -8,7 +8,7 @@
             include_once $filePath;
         }
         else {
-            throw new Exception("File does not exit" .  $filePath);
+            throw new Exception("Class file is not found: " .  $filePath);
         }
     }
 

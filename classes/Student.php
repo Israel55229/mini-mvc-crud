@@ -1,23 +1,36 @@
 <?php 
-    class Student extends Database {
+    declare(strict_types=1);
 
-        // Fetch all the student available in the database
-        public function getAllStudents() {
+    class Student {
+
+        private Database $db;
+
+        public function __construct() {
+            $this->db = new Database();
+        }
+
+
+        /* Fetch All Student From the database */
+        public function getAllStudents(): array|false {
             $sql = "SELECT * FROM students";
-            $stmt = $this->connect()->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->connect()->prepare($sql);
 
+            $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
 
+        /* Fetch a Single Student From the database */
+        public function getStudentById(int $id): array|false {
+            $sql = "SELECT * FROM student WHERE id = ? LIMIT 1";
+            $stmt = $this->db->connect()->prepare($sql);
 
-        // Fetching a single row of student values based on the student id
-        public function getStudentById($id) {
-            $sql = "SELECT * FROM students WHERE id = ?";
-            $stmt = $this->connect()->prepare($sql);
             $stmt->execute([$id]);
-
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
+
     }
+
+
+
+?>

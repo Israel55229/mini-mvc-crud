@@ -22,7 +22,7 @@
 
         /* Fetch a Single Student From the database */
         public function getStudentById(int $id): array|false {
-            $sql = "SELECT * FROM student WHERE id = ? LIMIT 1";
+            $sql = "SELECT * FROM students WHERE id = ? LIMIT 1";
             $stmt = $this->db->connect()->prepare($sql);
 
             $stmt->execute([$id]);

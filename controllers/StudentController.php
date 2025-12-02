@@ -1,18 +1,24 @@
 <?php 
-    class StudentController extends Student {
+    class StudentController {
 
-        // Displaying all students
-        public function showAllStudent() {
-            return $this->getAllStudents();
-        }
+        private Student $student;
 
-        // Displaying single student
-        public function showSingleStudent($id) {
-            return $this->getStudentById($id);
-            
+        public function __construct() {
+            $this->student = new Student();
         }
 
 
+        /* Showing or Displaying all the students in the database */ 
+        public function showAllStudents(): array|false {
+            $this->student->getAllStudents();
+        }
 
+        
 
+        /* Showing or Displaying a single student through ID */
+        public function showSingleStudent(int $id): array|false {
+            $this->student->getStudentById($id);
+        }
     }
+
+?>

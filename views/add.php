@@ -19,7 +19,7 @@
     $insertStudentData = new StudentController();
 
     // instantiate the function from the controller folder or directory
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         if(empty($_POST['fullname'])) {
